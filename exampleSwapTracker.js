@@ -20,19 +20,19 @@ const lcd = new LCDClient({
 });
 
 
-//const wsclient =new WebSocketClient('wss://terra-node.mcontrol.ml/websocket');
+const wsclient =new WebSocketClient('wss://terra-node.mcontrol.ml/websocket');
 //const wsclient =new WebSocketClient('wss://terra-rpc.easy2stake.com/websocket');
-const wsclient =new WebSocketClient('wss://terra.stakesystems.io:2053/websocket');
+//const wsclient =new WebSocketClient('wss://terra.stakesystems.io:2053/websocket');
 //const wsclient =new WebSocketClient('wss://http://public-node.terra.dev:26657/websocket');
 
 // Record purchases in the LP pair
 const tmQuery = {
     "message.action": "/terra.wasm.v1beta1.MsgExecuteContract",
-    "message.sender": "terra1m6ywlgn6wrjuagcmmezzz2a029gtldhey5k552"
-    // "from_contract.contract_address": "terra1m6ywlgn6wrjuagcmmezzz2a029gtldhey5k552",
-    // "from_contract.action": "swap",
-    // "from_contract.offer_asset": "uusd",
-    // "from_contract.ask_asset": "uluna"
+    "message.sender": "terra1m6ywlgn6wrjuagcmmezzz2a029gtldhey5k552",
+    "from_contract.contract_address": "terra1m6ywlgn6wrjuagcmmezzz2a029gtldhey5k552",
+    "from_contract.action": "swap",
+    "from_contract.offer_asset": "uusd",
+    "from_contract.ask_asset": "uluna"
 };
 
 // Record sales in the LP pair  
@@ -77,7 +77,6 @@ wsclient.subscribeTx(tmQuery, async data => {
     }
   
 });
-  
   
 console.log("Start time -->"+ new Date().toLocaleTimeString() );
 wsclient.start();
